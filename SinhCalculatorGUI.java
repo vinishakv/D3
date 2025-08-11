@@ -11,9 +11,10 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 /**
- * Simple GUI calculator for sinh(x) using a Taylor-series approximation.
+ * A simple GUI calculator that approximates sinh(x) using a Taylor series expansion.
  *
- * <p>File: SinhCalculatorGui.java
+ * <p>This application allows users to input a real number and calculates its hyperbolic sine
+ * using a truncated Taylor series with a fixed number of terms.
  */
 public class SinhCalculatorGui extends JFrame {
   private static final long serialVersionUID = 1L;
@@ -26,7 +27,9 @@ public class SinhCalculatorGui extends JFrame {
   private final JLabel resultLabel;
 
   /**
-   * Creates the Sinh calculator GUI.
+   * Constructs the GUI for the sinh(x) calculator.
+   *
+   * <p>Initializes the input field, calculate button, and result display.
    */
   public SinhCalculatorGui() {
     super("Sinh(x) Calculator");
