@@ -1,3 +1,7 @@
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -6,17 +10,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.text.DecimalFormat;
-
 /**
  * Simple GUI calculator for sinh(x) using a Taylor-series approximation.
- * <p>
- * File: SinhCalculatorGUI.java
+ *
+ * <p>File: SinhCalculatorGui.java
  */
-public class SinhCalculatorGUI extends JFrame {
+public class SinhCalculatorGui extends JFrame {
   private static final long serialVersionUID = 1L;
 
   private static final int TAYLOR_TERMS = 10;
@@ -29,7 +28,7 @@ public class SinhCalculatorGUI extends JFrame {
   /**
    * Creates the Sinh calculator GUI.
    */
-  public SinhCalculatorGUI() {
+  public SinhCalculatorGui() {
     super("Sinh(x) Calculator");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new GridLayout(3, 1));
@@ -48,7 +47,9 @@ public class SinhCalculatorGUI extends JFrame {
     JButton calculateButton = new JButton("Calculate sinh(x)");
     calculateButton.setMnemonic(KeyEvent.VK_C);
     calculateButton.setToolTipText("Compute sinh(x)");
-    calculateButton.getAccessibleContext().setAccessibleDescription("Compute the hyperbolic sine of the input");
+    calculateButton
+        .getAccessibleContext()
+        .setAccessibleDescription("Compute the hyperbolic sine of the input");
     calculateButton.addActionListener(this::onCalculate);
 
     // Result display
@@ -61,6 +62,11 @@ public class SinhCalculatorGUI extends JFrame {
     setVisible(true);
   }
 
+  /**
+   * Event handler for the Calculate button.
+   *
+   * @param e the ActionEvent triggered when the button is clicked
+   */
   private void onCalculate(ActionEvent e) {
     String inputText = inputField.getText().trim();
     if (inputText.isEmpty()) {
@@ -72,7 +78,8 @@ public class SinhCalculatorGUI extends JFrame {
       double x = Double.parseDouble(inputText);
       double result = sinh(x);
       DecimalFormat df = new DecimalFormat("#.#####");
-      resultLabel.setText(String.format("sinh(%s) = %s", df.format(x), df.format(result)));
+      resultLabel.setText(
+          String.format("sinh(%s) = %s", df.format(x), df.format(result)));
     } catch (NumberFormatException ex) {
       resultLabel.setText("Error: Invalid input. Please enter a real number.");
       System.err.println("Invalid input: " + ex.getMessage());
@@ -98,7 +105,12 @@ public class SinhCalculatorGUI extends JFrame {
     return result;
   }
 
+  /**
+   * Main method to launch the GUI.
+   *
+   * @param args command-line arguments
+   */
   public static void main(String[] args) {
-    SwingUtilities.invokeLater(() -> new SinhCalculatorGUI());
+    SwingUtilities.invokeLater(() -> new SinhCalculatorGui());
   }
 }
